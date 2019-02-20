@@ -1,9 +1,18 @@
 import React from "react"
+const  Form  =(props)=>{
 
-const Form = ()=>{
     return(
         <div>
-                <input className="form-input" type="text" name="comment" placeholder="Leave a Comment" />
+                <form onSubmit={props.addCommentHandler}>
+                <h6>Enter a comment:</h6>
+                <input className="form-input"
+                 type="text" 
+                onChange={props.changeHandler} 
+                value={props.commentInput}
+                name="commentInput" 
+                placeholder="Leave a Comment"
+                 />
+                </form>
         </div>
     )
 }

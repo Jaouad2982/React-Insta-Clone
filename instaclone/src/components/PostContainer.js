@@ -3,10 +3,9 @@ import "./head.css"
 import PropTypes from 'prop-types';
 import Comment from "./Comment";
 const PostContainer = (props)=>{
-        
     return (
         
-        <div  >
+        <div>
                 <div className="compo-image img">
                 {props.data.map(data=>
                     
@@ -18,20 +17,17 @@ const PostContainer = (props)=>{
                                 <img className="thumb"  src={data.thumbnailUrl} alt="tumbnail"/>
                             </div>
                         </div>
-                        <img className="imageurl"src={data.imageUrl} alt="rdm" />
-                        <h6>{data.likes} Likes</h6>
-                        <Comment comments={data.comments} />
+                        <img className="imageurl"src={data.imageUrl} alt={data.username} />
+                        <h6>{props.countLikes} </h6>
+                        <Comment comments={data.comments}
+                                 likes={data.likes}
+                                 />
+                    
                         <h6>{data.timestamp}</h6>
 
-                        
                     </div>
                 )}
                 </div>
-
-            <div>
-                    
-            </div>
-
         </div>
 
     )
