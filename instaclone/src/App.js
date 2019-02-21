@@ -1,51 +1,30 @@
 import React, { Component } from 'react';
-import SearchBar from './components/SearchBar';
-import PostContainer from "./components/PostContainer"
-import dummydata from "./components/dumyData";
-import "./App.css"
+import PostPage from "./components/PostPage"
+import authenticate from "./autentification/authenticate"
+import login from "./login/Login"
+
 class App extends Component {
-  constructor (props){
+  constructor(props){
     super(props);
-    this.state ={
-        data : [],
-        message : "",
+    this.state={
+      loggedIn : true,
+      display : " "
     }
-    this.title = "Instagram"
-  }
-
-  componentDidMount (){
-    this.setState({
-      data : dummydata
-    })
   }
 
 
-  handleIncrementCount = ()=>{
-    this.setState (prevState=>{
-      return {
-        countLikes : prevState.countLikes +1
-      }
-    })
-  }
-  render() {
+  render(){
     return (
-      <div className="App">
-      {this.state.message}
-        <header>
-            <SearchBar title={this.title}/>
-            <div className="container-second">
-              <PostContainer 
-              incrementCount ={this.handleIncrementCount}
-              className="container"
-              data={this.state.data} 
-                />
-              </div>
+      <div>
+     
+        <authenticate />
+        <PostPage />
+        <login />
 
-        </header>
-
+        
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
