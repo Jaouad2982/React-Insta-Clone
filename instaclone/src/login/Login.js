@@ -1,45 +1,51 @@
 import React from "react"
-
+import {LoginForm,InputStyle,Wrapper,TitleH} from "./../reusableComp/styles."
+import {Button} from"reactstrap"
 class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            userInput : " ",
+            userInput : "",
             passwordInput : ""
         }
     }
-
     changeHandler = e=>{
         this.setState ({
             [e.target.name] : e.target.value
         })
-        console.log(e.target.value)
-
     }
-
 
     loginHandler =e=>{
         e.preventDefault();
-        localStorage.setItem("userInput",this.state.userInput);
+        const user = this.state.userInput;
+        const pass = this.state.passwordInput;
+        localStorage.setItem("user",user);
+        localStorage.setItem("pass",pass)
         window.location.reload();
+        
     }
-
     render(){
         return(
-
-            <form onSubmit={this.loginHandler}>
-                <input type="text"
-                 name="userInput"
-                 value={this.state.userInput}
-                changeHandler={this.changeHandler}
+<Wrapper>
+          <LoginForm>
+                <TitleH>Instagram</TitleH>
+                <InputStyle
+                type="text"
+                name="userInput"
+                value={this.state.userInput}
+                onChange={this.changeHandler}
+                placeholder="Username"
                 />
-                <input type="text"
+                <InputStyle type="text"
                  name="passwordInput"
                  value={this.state.passwordInput}
-                 changeHandler={this.changeHandler}/>
-                <button> Login In</button>
-            </form>
-
+                 onChange={this.changeHandler}
+                 placeholder="password"/>
+               <TitleH><Button color="info" size="lg" block onClick={this.loginHandler}
+                
+                > Login </Button></TitleH>
+            </LoginForm>
+</Wrapper>
         )
     }
 }
